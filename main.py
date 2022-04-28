@@ -16,11 +16,24 @@ packages = [
 
 myHash = ChainingHashTable()
 
+# Insert packages
 myHash.insert(packages[1][0], packages[1][1])
-myHash.insert(packages[9][0], packages[9][1])
+myHash.insert(packages[10][0], packages[10][1])
+print(myHash.table)
+print()
 
-myHash.search(1)
-myHash.search(12)   # None
-myHash.search(10)
+print("Searching...")
+print(myHash.search(1))
+print(myHash.search(12))   # None
+print(myHash.search(10))
+print()
 
+print("Updating...")
+myHash.insert(10, "Package 10 - EDITED")
+print(myHash.table)
+
+print("Removing...")
+myHash.remove(10)
+print(myHash.table)
+myHash.remove(1)
 print(myHash.table)

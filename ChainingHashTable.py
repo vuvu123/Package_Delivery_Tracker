@@ -10,7 +10,7 @@ class ChainingHashTable:
     # Inserts a new item into the hash table.
     def insert(self, key, package):
         # get the bucket list where this item will go
-        bucket = hash(package) % len(self.table)
+        bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
         # update key if it is already in the bucket
@@ -32,7 +32,7 @@ class ChainingHashTable:
 
         for key_value in bucket_list:
             if key_value[0] == key:
-                return key_value[1] # value
+                return key_value[1]  # value
         return None
 
     def remove(self, key):
