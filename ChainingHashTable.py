@@ -1,4 +1,10 @@
+import csv
+from Package import Package
+from pprint import pprint
+
+
 class ChainingHashTable:
+
     # Constructor with optional initial capacity parameter
     # Assigns all buckets with an empty list
     def __init__(self, initial_capacity=10):
@@ -14,15 +20,14 @@ class ChainingHashTable:
         bucket_list = self.table[bucket]
 
         # update key if it is already in the bucket
-        for kv in bucket_list:
-            # print (key_value)
-            if kv[0] == key:
-                kv[1] = package
+        for item in bucket_list:
+            if item[0] == key:
+                item[1] = package
                 return True
 
         # if not, insert the item to the end of the bucket list
-        key_value = [key, package]
-        bucket_list.append(key_value)
+        item = [key, package]
+        bucket_list.append(item)
         return True
 
     def search(self, key):
@@ -30,9 +35,9 @@ class ChainingHashTable:
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
-        for key_value in bucket_list:
-            if key_value[0] == key:
-                return key_value[1]  # value
+        for item in bucket_list:
+            if item[0] == key:
+                return item[1]  # value
         return None
 
     def remove(self, key):
@@ -41,8 +46,19 @@ class ChainingHashTable:
         bucket_list = self.table[bucket]
 
         # remove the item from the bucket list if it is present.
-        for key_value in bucket_list:
-            if key_value[0] == key:
-                bucket_list.remove([key_value[0], key_value[1]])
+        for item in bucket_list:
+            if item[0] == key:
+                bucket_list.remove([item[0], item[1]])
+
+    def load_package_data(self, filename):
+        with open(filename, 'r') as file:
+            reader = csv.reader(file)
+            next(reader)
+            for row in reader:
+                package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+                self.insert(int(row[0]), package)
 
 
+hash_table = ChainingHashTable()
+hash_table.load_package_data('data/wgupus_packages.csv')
+pprint(hash_table.table)

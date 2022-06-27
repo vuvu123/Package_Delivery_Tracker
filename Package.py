@@ -16,9 +16,3 @@ class Package:
     def __repr__(self):
         return f'Package({self.package_id}, {self.address}, {self.city}, {self.state}, ' \
                f'{self.zip_code}, {self.deadline}, {self.weight}, {self.notes})'
-
-
-if __name__ == "__main__":
-    package = Package(1, "1234 WGU Lane", "Park City", "UT", "28273", "17:00", "10")
-    print(package)
-    print(repr(package))
