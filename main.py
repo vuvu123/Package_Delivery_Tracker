@@ -1,2 +1,2 @@
-from ChainingHashTable import ChainingHashTable
+from chaininghashtable import ChainingHashTable
 

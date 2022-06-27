@@ -1,5 +1,5 @@
 import csv
-from Package import Package
+from package import Package
 from pprint import pprint
 
 
