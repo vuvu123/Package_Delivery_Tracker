@@ -23,8 +23,8 @@ package_id,address,city,state,zip,deadline,weight,notes
 22,6351 South 900 East,Murray,UT,84121,17:00,2,
 23,5100 South 2700 West,Salt Lake City,UT,84118,17:00,5,
 24,5025 State St,Murray,UT,84107,17:00,7,
-25,5383 South 900 East #104,Salt Lake City,UT,84117,10:30,7,delay_905
-26,5383 South 900 East #104,Salt Lake City,UT,84117,17:00,25,
+25,5383 S 900 East #104,Salt Lake City,UT,84117,10:30,7,delay_905
+26,5383 S 900 East #104,Salt Lake City,UT,84117,17:00,25,
 27,1060 Dalton Ave S,Salt Lake City,UT,84104,17:00,5,
 28,2835 Main St,Salt Lake City,UT,84115,17:00,7,delay_905
 29,1330 2100 S,Salt Lake City,UT,84106,10:30,2,
