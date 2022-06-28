@@ -19,6 +19,10 @@ class Graph:
         for vertex in self.adj_list:
             print(vertex, ':', self.adj_list[vertex])
 
+    def print_edge_weights(self):
+        for vertices in self.edge_weights:
+            print(f"{vertices} : {self.edge_weights[vertices]}")
+
 
 def load_distance_data(filename):
     distance_data = []
@@ -44,5 +48,5 @@ def create_graph(filename):
 
 
 graph = create_graph('data/distances.csv')
-print(graph.edge_weights)
-print(graph.adj_list)
+# graph.print_graph()
+graph.print_edge_weights()

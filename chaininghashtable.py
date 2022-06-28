@@ -49,14 +49,31 @@ class ChainingHashTable:
             if item[0] == key:
                 bucket_list.remove([item[0], item[1]])
 
+    def print_packages(self):
+        for bucket in self.table:
+            for package in bucket:
+                print(package)
+
+    def get_package_list(self, truck_num):
+        # Returns list of package objects assigned to truck
+        packages = []
+        for bucket in self.table:
+            for package in bucket:
+                if int(package[1].truck) == truck_num:
+                    packages.append(package)
+        return packages
+
     def load_package_data(self, filename):
         with open(filename, 'r') as file:
             reader = csv.reader(file)
             next(reader)
             for row in reader:
-                package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+                package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
                 self.insert(int(row[0]), package)
 
 
 hash_table = ChainingHashTable()
 hash_table.load_package_data('data/packages.csv')
+# hash_table.print_packages()
+for package in hash_table.get_package_list(2):
+    print(package)
