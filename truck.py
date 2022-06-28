@@ -32,7 +32,7 @@ truck1 = Truck()
 truck2 = Truck()
 truck3 = Truck()
 
-# Get package lists per truck
+# Get list of packages assigned to each truck
 truck1_packages = hash_table.get_package_list(1)
 truck2_packages = hash_table.get_package_list(2)
 truck3_packages = hash_table.get_package_list(3)
@@ -43,7 +43,7 @@ for package in truck1_packages:
 
 for package in truck2_packages:
     if package.notes == "delay_905":
-        package.status = "DELAYED_EN_ROUTE"
+        package.status = "DELAYED"
     truck2.insert(package)
 
 for package in truck3_packages:
