@@ -1,5 +1,5 @@
 class Package:
-    def __init__(self, package_id, address, city, state, zip_code, deadline, weight, notes=None, truck=None):
+    def __init__(self, package_id, address, city, state, zip_code, deadline, weight, notes=None, truck=None, status="AT_HUB"):
         self.package_id = package_id
         self.address = address
         self.city = city
@@ -9,11 +9,12 @@ class Package:
         self.weight = weight
         self.notes = notes
         self.truck = truck
+        self.status = status
 
     def __str__(self):
         return f'ID: {self.package_id} | Address: {self.address}, {self.city}, {self.state}, ' \
                f'{self.zip_code} | Deadline: {self.deadline} | Weight: {self.weight} | Note: {self.notes} | ' \
-               f'Assigned Truck: {self.truck}'
+               f'Assigned Truck: {self.truck} | Status: {self.status}'
 
     def __repr__(self):
         return f'Package({self.package_id}, {self.address}, {self.city}, {self.state}, ' \

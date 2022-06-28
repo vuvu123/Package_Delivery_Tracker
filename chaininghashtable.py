@@ -78,5 +78,5 @@ hash_table.load_package_data('data/packages.csv')
 packages = hash_table.get_package_list(2)
 # for package in packages:
 #     print(package)
-for package in sorted(packages, key=lambda p: p.package_id):
-    print(package)
+# for package in sorted(packages, key=lambda p: p.package_id):
+#     print(package)
