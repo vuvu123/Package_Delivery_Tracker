@@ -11,8 +11,9 @@ class Package:
         self.truck = truck
 
     def __str__(self):
-        return f'[{self.package_id}, {self.address}, {self.city}, {self.state}, ' \
-               f'{self.zip_code}, {self.deadline}, {self.weight}, {self.notes}, {self.truck}]'
+        return f'ID: {self.package_id} | Address: {self.address}, {self.city}, {self.state}, ' \
+               f'{self.zip_code} | Deadline: {self.deadline} | Weight: {self.weight} | Note: {self.notes} | ' \
+               f'Assigned Truck: {self.truck}'
 
     def __repr__(self):
         return f'Package({self.package_id}, {self.address}, {self.city}, {self.state}, ' \
