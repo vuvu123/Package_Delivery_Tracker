@@ -1,6 +1,5 @@
 import csv
 from package import Package
-from pprint import pprint
 
 
 class ChainingHashTable:
@@ -61,7 +60,3 @@ class ChainingHashTable:
 
 hash_table = ChainingHashTable()
 hash_table.load_package_data('data/packages.csv')
-# pprint(hash_table.table)
-
-for i in range(1, 41):
-    print(hash_table.search(i))

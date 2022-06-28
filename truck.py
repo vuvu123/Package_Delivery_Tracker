@@ -15,3 +15,9 @@ class Truck:
         self.packages.remove(package)
         self.route.remove(package[1])
 
+
+truck1 = Truck()
+truck2 = Truck()
+truck3 = Truck()
+
+

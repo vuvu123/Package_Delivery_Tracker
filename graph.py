@@ -45,3 +45,4 @@ def create_graph(filename):
 
 graph = create_graph('data/distances.csv')
 print(graph.edge_weights)
+print(graph.adj_list)
