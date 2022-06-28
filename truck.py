@@ -28,18 +28,22 @@ class Truck:
 hash_table = ChainingHashTable()
 hash_table.load_package_data('data/packages.csv')
 
-truck1_packages = hash_table.get_package_list(1)
-truck2_packages = hash_table.get_package_list(2)
-truck3_packages = hash_table.get_package_list(3)
-
 truck1 = Truck()
 truck2 = Truck()
 truck3 = Truck()
 
+# Get package lists per truck
+truck1_packages = hash_table.get_package_list(1)
+truck2_packages = hash_table.get_package_list(2)
+truck3_packages = hash_table.get_package_list(3)
+
+# Insert packages into each truck
 for package in truck1_packages:
     truck1.insert(package)
 
 for package in truck2_packages:
+    if package.notes == "delay_905":
+        package.status = "DELAYED_EN_ROUTE"
     truck2.insert(package)
 
 for package in truck3_packages:
