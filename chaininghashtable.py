@@ -12,7 +12,7 @@ class ChainingHashTable:
         for i in range(initial_capacity):
             self.table.append([])
 
-    # Inserts a new item into the hash table.
+    # Inserts a new item into the hash table - O(n)
     def insert(self, key, package):
         # get the bucket list where this item will go
         bucket = hash(key) % len(self.table)
@@ -29,6 +29,7 @@ class ChainingHashTable:
         bucket_list.append(item)
         return True
 
+    # Get value from hash table - O(n)
     def search(self, key):
         # get the bucket list where this key would be.
         bucket = hash(key) % len(self.table)
@@ -39,6 +40,7 @@ class ChainingHashTable:
                 return item[1]  # value
         return None
 
+    # Remove value from hash table - O(n)
     def remove(self, key):
         # get the bucket list where this item will be removed from.
         bucket = hash(key) % len(self.table)
@@ -49,11 +51,6 @@ class ChainingHashTable:
             if item[0] == key:
                 bucket_list.remove([item[0], item[1]])
 
-    def print_packages(self):
-        for bucket in self.table:
-            for package in bucket:
-                print(package[1])
-
     def get_package_list(self, truck_num):
         # Returns list of package objects assigned to truck
         packages = []
@@ -62,6 +59,17 @@ class ChainingHashTable:
                 if int(package[1].truck) == truck_num:
                     packages.append(package[1])
         return packages
+
+    def get_all_packages(self):
+        all_packages = []
+        for bucket in self.table:
+            for package in bucket:
+                all_packages.append(package[1])
+        return sorted(all_packages, key=lambda p: p.package_id)  # Sorts package list by ID
+
+    def print_all_packages(self):
+        for package in self.get_all_packages():
+            print(package)
 
     def load_package_data(self, filename):
         with open(filename, 'r') as file:
@@ -72,11 +80,7 @@ class ChainingHashTable:
                 self.insert(int(row[0]), package)
 
 
-hash_table = ChainingHashTable()
-hash_table.load_package_data('data/packages.csv')
-# hash_table.print_packages()
-packages = hash_table.get_package_list(2)
-# for package in packages:
-#     print(package)
-# for package in sorted(packages, key=lambda p: p.package_id):
-#     print(package)
+if __name__ == "__main__":
+    hash_table = ChainingHashTable()
+    hash_table.load_package_data('data/packages.csv')
+    # hash_table.print_all_packages()

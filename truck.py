@@ -1,4 +1,5 @@
 from chaininghashtable import ChainingHashTable
+from datetime import datetime, timedelta
 
 
 class Truck:
@@ -8,13 +9,15 @@ class Truck:
         self.start_time = None
         self.current_time = None
         self.finish_time = None
-        self.speed = 0.3
+        self.speed = 18    # 18 mph = 0.3 miles/minute
 
     def insert(self, package):
+        """Insert package into truck"""
         self.packages.append(package)
         self.route.append(package.address)
 
     def remove(self, package):
+        """Removes packaging from truck"""
         self.packages.remove(package)
         self.route.remove(package.address)
 
@@ -24,10 +27,10 @@ class Truck:
             items += f"{pack}\n"
         return items
 
-
 hash_table = ChainingHashTable()
 hash_table.load_package_data('data/packages.csv')
 
+# Create truck objects
 truck1 = Truck()
 truck2 = Truck()
 truck3 = Truck()
@@ -58,3 +61,8 @@ if __name__ == "__main__":
 
     print("Truck 3 Packages:")
     print(truck3)
+
+    truck1.start_time = datetime(2022, 6, 29, 8, 0)
+    truck2.start_time = datetime(2022, 6, 29, 9, 5)
+    truck3.start_time = datetime(2022, 6, 29, 10, 0)
+    print(truck1.start_time.strftime("%H:%M"))
