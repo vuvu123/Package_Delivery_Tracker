@@ -49,11 +49,12 @@ for package in truck2_packages:
 for package in truck3_packages:
     truck3.insert(package)
 
-print("Truck 1 Packages:")
-print(truck1)
+if __name__ == "__main__":
+    print("Truck 1 Packages:")
+    print(truck1)
 
-print("Truck 2 Packages:")
-print(truck2)
+    print("Truck 2 Packages:")
+    print(truck2)
 
-print("Truck 3 Packages:")
-print(truck3)
+    print("Truck 3 Packages:")
+    print(truck3)
