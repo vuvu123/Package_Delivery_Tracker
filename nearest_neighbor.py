@@ -16,21 +16,21 @@ def total_miles(route):
     return miles
 
 def nn_sort(route):
-    hub = "4001 South 700 East"
-    sorted_route = [hub]
+    hub = "4001 South 700 East"  # Initialize the starting point
+    sorted_route = [hub]    # Initialize sorted route with starting point (hub)
 
     while route:  # while route list is not empty
-        closest = [0, hub]  # Initialize minimum values
-        for destination_address in route:
-            current_address = sorted_route[-1]
+        closest = [None, hub]  # Initialize placeholder for closest [distance, location] from current address
+        for destination_address in route:  # Iterate through addresses in truck route
+            current_address = sorted_route[-1]  # Current address to measure distance from is last item in sorted_route
             distance = get_distance(current_address, destination_address)
-            if closest[0] == 0:
+            if closest[0] is None:  # Initialize closest [distance, address] to the first destination address
                 closest = [distance, destination_address]
-            if distance < closest[0] and distance != 0:
+            if distance < closest[0]:  # Set closest [distance, address] if distance between addresses is smaller
                 closest = [distance, destination_address]
-        if closest[1] not in sorted_route:
+        if closest[1] not in sorted_route:  # Add address to sorted_route
             sorted_route.append(closest[1])
-        route.remove(closest[1])    # Remove current location from list
+        route.remove(closest[1])    # Remove current location from route list
     sorted_route.append(hub)  # Return to hub sorted_route is complete
     return sorted_route
 
