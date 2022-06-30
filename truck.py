@@ -35,24 +35,22 @@ truck1 = Truck()
 truck2 = Truck()
 truck3 = Truck()
 
-# Get list of packages assigned to each truck
-truck1_packages = hash_table.get_package_list(1)
-truck2_packages = hash_table.get_package_list(2)
-truck3_packages = hash_table.get_package_list(3)
 
 # Insert packages into each truck
-for package in truck1_packages:
-    truck1.insert(package)
+def load_trucks(all_packages):
+    for package in all_packages:
+        if package.truck == 1:
+            truck1.insert(package)
+        elif package.truck == 2:
+            if package.notes == "delay_905":
+                package.status = "DELAYED"
+            truck2.insert(package)
+        elif package.truck == 3:
+            truck3.insert(package)
 
-for package in truck2_packages:
-    if package.notes == "delay_905":
-        package.status = "DELAYED"
-    truck2.insert(package)
-
-for package in truck3_packages:
-    truck3.insert(package)
 
 if __name__ == "__main__":
+    load_trucks(hash_table.get_all_packages())
     print("Truck 1 Packages:")
     print(truck1)
 

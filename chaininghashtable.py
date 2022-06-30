@@ -52,7 +52,7 @@ class ChainingHashTable:
                 bucket_list.remove([item[0], item[1]])
 
     def get_package_list(self, truck_num):
-        # Returns list of package objects assigned to truck
+        # Returns list of package objects assigned to truck (MIGHT NOT NEED)
         packages = []
         for bucket in self.table:
             for package in bucket:
@@ -76,7 +76,7 @@ class ChainingHashTable:
             reader = csv.reader(file)
             next(reader)
             for row in reader:
-                package = Package(int(row[0]), row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
+                package = Package(int(row[0]), row[1], row[2], row[3], row[4], row[5], row[6], row[7], int(row[8]))
                 self.insert(int(row[0]), package)
 
 
