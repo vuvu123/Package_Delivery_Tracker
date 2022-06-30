@@ -80,7 +80,7 @@ class ChainingHashTable:
                 self.insert(int(row[0]), package)
 
 
-# Helper function creates chaining hash table object
+# Helper function creates ChainingHashTable object, loads data, then returns the object
 def create_package_hash_table():
     packages_ht = ChainingHashTable()
     packages_ht.load_package_data('data/packages.csv')
