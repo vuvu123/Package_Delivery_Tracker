@@ -24,6 +24,8 @@ class Graph:
             print(f"{vertices} : {self.edge_weights[vertices]}")
 
 
+# Helper function returns list of rows of csv data
+# O(N)
 def load_distance_data(filename):
     distance_data = []
     with open(filename, 'r') as file:
@@ -34,6 +36,8 @@ def load_distance_data(filename):
     return distance_data
 
 
+# Helper function loads data from csv file and returns Graph object
+# O(N^2)
 def create_graph(filename):
     distance_data = load_distance_data(filename)
     graph_distances = Graph()
@@ -47,6 +51,4 @@ def create_graph(filename):
     return graph_distances
 
 
-graph = create_graph('data/distances.csv')
-# graph.print_graph()
-# graph.print_edge_weights()
+graph = create_graph('data/distances.csv')  # Graph object to be used elsewhere

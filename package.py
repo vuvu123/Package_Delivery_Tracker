@@ -1,5 +1,5 @@
 class Package:
-    def __init__(self, package_id, address, city, state, zip_code, deadline, weight, notes=None, truck=None, status="AT_HUB"):
+    def __init__(self, package_id, address, city, state, zip_code, deadline, weight, notes=None, truck=None, status="AT_THE_HUB"):
         self.package_id = package_id
         self.address = address
         self.city = city

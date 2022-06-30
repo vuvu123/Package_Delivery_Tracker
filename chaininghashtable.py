@@ -80,7 +80,12 @@ class ChainingHashTable:
                 self.insert(int(row[0]), package)
 
 
-if __name__ == "__main__":
-    hash_table = ChainingHashTable()
-    hash_table.load_package_data('data/packages.csv')
-    # hash_table.print_all_packages()
+# Helper function creates chaining hash table object
+def create_package_hash_table():
+    packages_ht = ChainingHashTable()
+    packages_ht.load_package_data('data/packages.csv')
+    return packages_ht
+
+
+pack_hash_table = create_package_hash_table()  # ChainingHashTable object to be used elsewhere
+
