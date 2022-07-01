@@ -47,6 +47,11 @@ class Truck:
         return None
 
 
+# Create truck objects
+truck1 = Truck(1)
+truck2 = Truck(2)
+truck3 = Truck(3)
+
 # Insert packages into each truck
 def load_trucks(all_packages):
     for package in all_packages:
@@ -76,10 +81,10 @@ def total_miles_all_trucks():
     truck1_miles = miles_driven(truck1.route)
     truck2_miles = miles_driven(truck2.route)
     truck3_miles = miles_driven(truck3.route)
-    return f"Truck 1 miles: {truck1_miles}\n" \
-           f"Truck 2 miles: {truck2_miles}\n" \
-           f"Truck 3 miles: {truck3_miles}\n" \
-           f"Total miles: {truck1_miles + truck2_miles + truck3_miles}"
+    return f"Truck 1 miles driven: {truck1_miles}\n" \
+           f"Truck 2 miles driven: {truck2_miles}\n" \
+           f"Truck 3 miles driven: {truck3_miles}\n" \
+           f"Total miles driven: {truck1_miles + truck2_miles + truck3_miles}"
 
 
 # Sets all packages on truck to "EN ROUTE"
@@ -116,8 +121,8 @@ def deliver_truck_packages(truck):
                 package.time_delivered = delivery_time
 
 
-# Check individual package status at any given time
-def check_package_status(package_id, time=TRUCK1_START):
+# Get individual package status at any given time
+def get_package_status(package_id, time=TRUCK1_START):
     package = pack_hash_table.search(package_id)
     if package is None:
         print("Package ID not found.")
@@ -147,20 +152,16 @@ def check_package_status(package_id, time=TRUCK1_START):
     print(package)
 
 
-def check_all_packages(time=TRUCK1_START):
+def get_all_package_status(time=TRUCK1_START):
     for package in pack_hash_table.get_all_packages():
-        check_package_status(package.package_id, time)
+        get_package_status(package.package_id, time)
 
 
-if __name__ == "__main__":
-    # Create truck objects
-    truck1 = Truck(1)
-    truck2 = Truck(2)
-    truck3 = Truck(3)
-
+def delivery_simulation():
+    # Load trucks with packages
     load_trucks(pack_hash_table.get_all_packages())
 
-    # Initialize start times for trucks
+    # Initialize truck start times
     truck1.current_time = TRUCK1_START
     truck2.current_time = TRUCK2_START
     truck3.current_time = TRUCK3_START
@@ -176,10 +177,9 @@ if __name__ == "__main__":
     deliver_truck_packages(truck3)
 
     # Print truck times after each delivery
-    print(f"Truck 1 Time: {truck1.current_time.strftime(TIME_FORMAT)}")
-    print(f"Truck 2 Time: {truck2.current_time.strftime(TIME_FORMAT)}")
-    print(f"Truck 3 Time: {truck3.current_time.strftime(TIME_FORMAT)}")
-
+    # print(f"Truck 1 Time: {truck1.current_time.strftime(TIME_FORMAT)}")
+    # print(f"Truck 2 Time: {truck2.current_time.strftime(TIME_FORMAT)}")
+    # print(f"Truck 3 Time: {truck3.current_time.strftime(TIME_FORMAT)}")
 
     # End of day results
     # print("End of day:")
@@ -192,5 +192,6 @@ if __name__ == "__main__":
     # check_package_status(32)  # truck 2
     # check_package_status(9, datetime.strptime("12:01:00", "%H:%M:%S"))  # truck 3
 
-    check_all_packages(datetime.strptime("10:30:00", "%H:%M:%S"))
+    # Check all
+    # get_all_package_status(datetime.strptime("10:30:00", "%H:%M:%S"))
 

@@ -14,7 +14,7 @@ class Package:
         self.time_delivered = time_delivered
 
     def __str__(self):
-        description = f'ID: {self.package_id} | Address: {self.address}, {self.city}, {self.state}, ' \
+        description = f'Package ID: {self.package_id} | Address: {self.address}, {self.city}, {self.state}, ' \
                f'{self.zip_code} | Deadline: {self.deadline} | Weight: {self.weight} | Note: {self.notes} | ' \
                f'Assigned Truck: {self.truck} | Status: {self.status}'
         if self.time_delivered is not None:
