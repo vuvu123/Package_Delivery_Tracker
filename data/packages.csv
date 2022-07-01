@@ -7,7 +7,7 @@ package_id,address,city,state,zip,deadline,weight,notes,truck
 6,3060 Lester St,West Valley City,UT,84119,10:30,88,delay_905,2
 7,1330 2100 S,Salt Lake City,UT,84106,17:00,8,,2
 8,300 State St,Salt Lake City,UT,84103,17:00,9,,2
-9,300 State St,Salt Lake City,UT,84103,17:00,2,wrong_address,2
+9,300 State St,Salt Lake City,UT,84103,17:00,2,wrong_address,3
 10,600 E 900 South,Salt Lake City,UT,84105,17:00,1,,2
 11,2600 Taylorsville Blvd,Salt Lake City,UT,84118,17:00,1,,2
 12,3575 W Valley Central Station bus Loop,West Valley City,UT,84119,17:00,1,,3
