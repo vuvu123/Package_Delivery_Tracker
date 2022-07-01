@@ -2,12 +2,12 @@ import csv
 from package import Package
 
 
+# Chaining hash table data structure holds package data
 class ChainingHashTable:
 
-    # Constructor with optional initial capacity parameter
+    # Constructor with optional initial capacity parameter - O(N)
     # Assigns all buckets with an empty list
     def __init__(self, initial_capacity=10):
-        # initialize the hash table with empty bucket list entries
         self.table = []
         for i in range(initial_capacity):
             self.table.append([])
@@ -51,15 +51,7 @@ class ChainingHashTable:
             if item[0] == key:
                 bucket_list.remove([item[0], item[1]])
 
-    def get_package_list(self, truck_num):
-        # Returns list of package objects assigned to truck (MIGHT NOT NEED)
-        packages = []
-        for bucket in self.table:
-            for package in bucket:
-                if int(package[1].truck) == truck_num:
-                    packages.append(package[1])
-        return packages
-
+    # Helper function. Returns a lot of all packages sorted by ID - O(N^2)
     def get_all_packages(self):
         all_packages = []
         for bucket in self.table:
@@ -67,10 +59,7 @@ class ChainingHashTable:
                 all_packages.append(package[1])
         return sorted(all_packages, key=lambda p: p.package_id)  # Sorts package list by ID
 
-    def print_all_packages(self):
-        for package in self.get_all_packages():
-            print(package)
-
+    # Loads all package data from file - O(n)
     def load_package_data(self, filename):
         with open(filename, 'r') as file:
             reader = csv.reader(file)
@@ -87,5 +76,6 @@ def create_package_hash_table():
     return packages_ht
 
 
-pack_hash_table = create_package_hash_table()  # ChainingHashTable object to be used elsewhere
+# ChainingHashTable object to be used elsewhere
+pack_hash_table = create_package_hash_table()
 

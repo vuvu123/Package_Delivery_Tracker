@@ -11,6 +11,7 @@ ADDRESS_CHANGE_TIME = datetime.strptime("10:20:00", "%H:%M:%S")
 TIME_FORMAT = "%H:%M:%S"
 
 
+# Truck class holds information about the truck
 class Truck:
     def __init__(self, truck_id=1):
         self.truck_id = truck_id
@@ -19,27 +20,22 @@ class Truck:
         self.current_time = None
         self.package_count = 0
 
+    # Inserts package into truck's route and packages lists - O(1)
     def insert(self, package):
-        """Insert package into truck"""
         self.packages.append(package)
         self.route.append(package.address)
 
+    # Removes package from truck's route and packages lists - O(1)
     def remove(self, package):
-        """Removes packaging from truck"""
         self.packages.remove(package)
         self.route.remove(package.address)
 
-    def __str__(self):
-        items = ""
-        for pack in self.packages:
-            items += f"{pack}\n"
-        return items
-
-    # Updates current time by adding minutes based on the distance traveled
+    # Updates current time by adding minutes based on the distance traveled - O(1)
     def add_travel_time(self, distance):
         minutes = ceil((distance / TRUCK_SPEED) * 60)
         self.current_time += timedelta(minutes=minutes)
 
+    # Returns package object by package ID - O(N)
     def get_package(self, package_id):
         for package in self.packages:
             if package.package_id == package_id:
@@ -52,7 +48,8 @@ truck1 = Truck(1)
 truck2 = Truck(2)
 truck3 = Truck(3)
 
-# Insert packages into each truck
+
+# Insert packages into each truck - O(N)
 def load_trucks(all_packages):
     for package in all_packages:
         if package.truck == 1:
@@ -68,15 +65,15 @@ def load_trucks(all_packages):
             truck3.package_count += 1
 
 
-# Calculates and returns total mileage for route
+# Calculates and returns total mileage for route - O(N)
 def miles_driven(route):
     miles = 0
     for i in range(0, len(route) - 1):
-        # print(f"{route[i]} -> {route[i+1]} = {get_distance(route[i], route[i+1])} miles")
         miles = miles + get_distance(route[i], route[i + 1])
     return miles
 
 
+# Calculates total miles driven for all trucks and returns string text for mileage report - O(1)
 def total_miles_all_trucks():
     truck1_miles = miles_driven(truck1.route)
     truck2_miles = miles_driven(truck2.route)
@@ -87,20 +84,16 @@ def total_miles_all_trucks():
            f"Total miles driven: {truck1_miles + truck2_miles + truck3_miles}"
 
 
-# Sets all packages on truck to "EN ROUTE"
+# Sets all packages on truck to "EN ROUTE" - O(N)
 def update_status_en_route(truck):
     for package in truck.packages:
         package.status = "EN ROUTE"
 
 
-# Delivers packages on truck
-# Algorithm to deliver
-# 1. Loop through nearest neighbor sorted route
-# 2. Pop(first address) of route
-# 3. Change status of package associated with address
-# 4. Keep track of miles
-# 5. Keep track of time elapsed (add_travel_time(miles))
+# Delivers truck packages. - O(N^2)
+# Keeps track of time and updates package status as packages get delivered.
 def deliver_truck_packages(truck):
+    # Reruns nearest neighbor algorithm for truck 3 after changing package 9 address/zip code
     if truck.truck_id == 3 and truck.current_time >= ADDRESS_CHANGE_TIME:
         pack_9 = truck.get_package(9)
         pack_9.address = "410 S State St"
@@ -121,7 +114,7 @@ def deliver_truck_packages(truck):
                 package.time_delivered = delivery_time
 
 
-# Get individual package status at any given time
+# Gets individual package status at any given time - O(1)
 def get_package_status(package_id, time=TRUCK1_START):
     package = pack_hash_table.search(package_id)
     if package is None:
@@ -141,7 +134,6 @@ def get_package_status(package_id, time=TRUCK1_START):
         start_time = TRUCK2_START
     elif package.truck == 3:
         start_time = TRUCK3_START
-    # print(start_time)
 
     if start_time < time < package.time_delivered:
         package.status = "EN ROUTE"
@@ -152,11 +144,13 @@ def get_package_status(package_id, time=TRUCK1_START):
     print(package)
 
 
+# Gets all package statuses at any given time - O(N)
 def get_all_package_status(time=TRUCK1_START):
     for package in pack_hash_table.get_all_packages():
         get_package_status(package.package_id, time)
 
 
+# Simulates package delivery - O(1)
 def delivery_simulation():
     # Load trucks with packages
     load_trucks(pack_hash_table.get_all_packages())
@@ -175,23 +169,4 @@ def delivery_simulation():
     deliver_truck_packages(truck1)
     deliver_truck_packages(truck2)
     deliver_truck_packages(truck3)
-
-    # Print truck times after each delivery
-    # print(f"Truck 1 Time: {truck1.current_time.strftime(TIME_FORMAT)}")
-    # print(f"Truck 2 Time: {truck2.current_time.strftime(TIME_FORMAT)}")
-    # print(f"Truck 3 Time: {truck3.current_time.strftime(TIME_FORMAT)}")
-
-    # End of day results
-    # print("End of day:")
-    # pack_hash_table.print_all_packages()
-    # print(total_miles_all_trucks())
-
-    # Check package status tests
-    # check_package_status(50)  # not valid
-    # check_package_status(40, datetime.strptime("08:20:00", "%H:%M:%S"))  # truck 1
-    # check_package_status(32)  # truck 2
-    # check_package_status(9, datetime.strptime("12:01:00", "%H:%M:%S"))  # truck 3
-
-    # Check all
-    # get_all_package_status(datetime.strptime("10:30:00", "%H:%M:%S"))
 

@@ -1,11 +1,17 @@
 from graph import graph
 
 
-# Helper function that returns distance between two addresses
+# Helper function that returns distance between two addresses - O(1)
 def get_distance(address1, address2):
     return graph.edge_weights[address1, address2]
 
 
+# Nearest neighbor sorting algorithm - O(n^2)
+# From starting location, find the closest location
+# Closest location becomes the location to measure distance from.
+# Chosen location is no longer an available location, remove from route.
+# Continue this way until there are no available locations, then return to starting point (WGU)
+# Please see attached document for more details
 def nn_sort(route):
     hub = "4001 South 700 East"  # Initialize the starting point
     sorted_route = [hub]    # Initialize sorted route with starting point (hub)

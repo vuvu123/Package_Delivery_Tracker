@@ -1,3 +1,5 @@
+# Package class holds information about the package
+# __str__ and __repr__ classes were set up to easily display data on the lookup functions
 class Package:
     def __init__(self, package_id, address, city, state, zip_code, deadline, weight, notes=None, truck=None,
                  status="AT_THE_HUB", time_delivered=None):

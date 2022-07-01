@@ -1,8 +1,8 @@
-# Kenny Vu | ID: 001222943
-
+# Kenny Vu | ID: 001222943 | C950 - DSA II
 from truck import *
 
 
+# Creates user interface and displays package/mileage data based on user input - O(n)
 def ui():
     delivery_simulation()
     user_input = None
@@ -53,4 +53,5 @@ def ui():
             print()
 
 
+# Runs function
 ui()

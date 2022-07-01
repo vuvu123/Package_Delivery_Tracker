@@ -1,27 +1,22 @@
 import csv
 
 
+# Graph data structure was used to hold distance data between addresses
 class Graph:
     def __init__(self):
         self.adj_list = {}
         self.edge_weights = {}
 
+    # Adds vertex to adjacency list - O(N)
     def add_vertex(self, vertex):
         if vertex not in self.adj_list.keys():
             self.adj_list[vertex] = []
             return True
         return False
 
+    # Adds an edge to edge_weights dictionary - O(1)
     def add_edge(self, v1, v2, weight=None):
         self.edge_weights[(v1, v2)] = weight
-
-    def print_graph(self):
-        for vertex in self.adj_list:
-            print(vertex, ':', self.adj_list[vertex])
-
-    def print_edge_weights(self):
-        for vertices in self.edge_weights:
-            print(f"{vertices} : {self.edge_weights[vertices]}")
 
 
 # Helper function returns list of rows of csv data
@@ -36,7 +31,7 @@ def load_distance_data(filename):
     return distance_data
 
 
-# Helper function loads data from csv file and returns Graph object
+# Creates graph
 # O(N^2)
 def create_graph(filename):
     distance_data = load_distance_data(filename)
@@ -51,4 +46,6 @@ def create_graph(filename):
     return graph_distances
 
 
-graph = create_graph('data/distances.csv')  # Graph object to be used elsewhere
+# Graph object to be used in other files to measure distance
+graph = create_graph('data/distances.csv')
+
