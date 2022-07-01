@@ -13,7 +13,10 @@ def ui():
         print("\t3 => Truck mileage report.")
         print("\t0 => Exit program.")
         print()
-        user_input = int(input("Please select an option from the menu: "))
+        try:
+            user_input = int(input("Please select an option from the menu: "))
+        except ValueError:
+            print("Please enter a number.")
         print()
         if user_input == 0:
             print("Exiting..")
