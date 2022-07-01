@@ -136,7 +136,20 @@ def check_package_status(package_id, time=TRUCK1_START):
         start_time = TRUCK2_START
     elif package.truck == 3:
         start_time = TRUCK3_START
-    print(start_time)
+    # print(start_time)
+
+    if start_time < time < package.time_delivered:
+        package.status = "EN ROUTE"
+        package.time_delivered = None
+    elif time <= start_time:
+        package.status = "AT THE HUB"
+        package.time_delivered = None
+    print(package)
+
+
+def check_all_packages(time=TRUCK1_START):
+    for package in pack_hash_table.get_all_packages():
+        check_package_status(package.package_id, time)
 
 
 if __name__ == "__main__":
@@ -169,13 +182,15 @@ if __name__ == "__main__":
 
 
     # End of day results
-    print("End of day:")
-    pack_hash_table.print_all_packages()
-    print(total_miles_all_trucks())
+    # print("End of day:")
+    # pack_hash_table.print_all_packages()
+    # print(total_miles_all_trucks())
 
     # Check package status tests
-    check_package_status(50)  # not valid
-    check_package_status(40)  # truck 1
-    check_package_status(32)  # truck 2
-    check_package_status(9)  # truck 3
+    # check_package_status(50)  # not valid
+    # check_package_status(40, datetime.strptime("08:20:00", "%H:%M:%S"))  # truck 1
+    # check_package_status(32)  # truck 2
+    # check_package_status(9, datetime.strptime("12:01:00", "%H:%M:%S"))  # truck 3
+
+    check_all_packages(datetime.strptime("10:30:00", "%H:%M:%S"))
 
