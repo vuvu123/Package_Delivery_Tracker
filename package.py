@@ -19,8 +19,9 @@ class Package:
         description = f'Package ID: {self.package_id} | Address: {self.address}, {self.city}, {self.state}, ' \
                f'{self.zip_code} | Deadline: {self.deadline} | Weight: {self.weight} | Note: {self.notes} | ' \
                f'Assigned Truck: {self.truck} | Status: {self.status}'
-        if self.time_delivered is not None:
-            description += self.time_delivered.strftime('%H:%M:%S')
+        if "DELIVERED" not in self.status:
+            return description
+        description += self.time_delivered.strftime('%H:%M:%S')
         return description
 
     def __repr__(self):

@@ -137,10 +137,10 @@ def get_package_status(package_id, time=TRUCK1_START):
 
     if start_time < time < package.time_delivered:
         package.status = "EN ROUTE"
-        package.time_delivered = None
     elif time <= start_time:
         package.status = "AT THE HUB"
-        package.time_delivered = None
+    else:
+        package.status = "DELIVERED => "
     print(package)
 
 
