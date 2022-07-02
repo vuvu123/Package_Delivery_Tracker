@@ -7,11 +7,11 @@ def get_distance(address1, address2):
 
 
 # Nearest neighbor sorting algorithm - O(n^2)
-# From starting location, find the closest location
-# Closest location becomes the location to measure distance from.
-# Chosen location is no longer an available location, remove from route.
-# Continue this way until there are no available locations, then return to starting point (WGU)
-# Please see attached document for more details
+# From starting location, find the closest location (shortest distance)
+# Closest location becomes the location to measure distance from. (Add location to sorted_route list)
+# Chosen location is no longer an available location, remove from route from route list.
+# Continue this way until there are no available locations, then
+# Return to starting point (Append starting point to sorted_route)
 def nn_sort(route):
     hub = "4001 South 700 East"  # Initialize the starting point
     sorted_route = [hub]    # Initialize sorted route with starting point (hub)
